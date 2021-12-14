@@ -1,15 +1,17 @@
 NAME = minishell
 SRC = SRCS/main.c \
+	  SRCS/parser.c \
+	  SRCS/utils1.c \
 
 LIBFT = -L./LIBFT -lft
 READLINE = -L/usr/local/lib -I/usr/local/include -lreadline
 CC = gcc #clang
 INC = -I./minishell.h
-CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 RM = rm -rf
 OBJ = $(SRC:.c=.o)
 $(NAME): $(OBJ)
-	@$(MAKE) -C ./LIBFT
+	@$(MAKE) bonus -C ./LIBFT
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(INC) $(LIBFT) $(READLINE)
 all: $(NAME)
 clean:

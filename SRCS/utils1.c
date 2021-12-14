@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 12:56:38 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/14 15:10:13 by aachbaro         ###   ########.fr       */
+/*   Created: 2021/12/14 17:25:54 by aachbaro          #+#    #+#             */
+/*   Updated: 2021/12/14 18:49:50 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int parser(char *str)
+void	aff_lst(t_list *lst)
 {
-	char 	**tab;
-	pid_t	pid;
-	int		status;
-	int		i;
+	t_list	*tmp;
 
-	tab = ft_split(str, ' ');
-	pid = fork();
-	if (pid == -1)
-		perror("fork");
-	else if (pid > 0)
+	tmp = lst;
+	while (tmp)
 	{
-		waitpid(pid, &status, 0);
-		kill(pid, SIGTERM);
+		printf("%s\n", (char *)tmp->content);
+		tmp = tmp->next;
 	}
-	else
-	{
-		if (execve(tab[0], tab, 0) == -1)
-			perror("shell");
-	}
+}
+
+void	del_tab(char **tab)
+{
+	int	i;
+
 	i = 0;
 	while (tab[i])
 		free(tab[i++]);
 	free(tab);
-	return (0);
 }
