@@ -15,7 +15,6 @@ all: $(NAME)
 clean:
 	@${RM} ${OBJ}
 	@$(MAKE) clean -C ./LIBFT
-	@$(MAKE) clean -C ./MLX
 fclean: clean
 	@$(MAKE) fclean -C ./LIBFT
 	@${RM} ${SAVE}

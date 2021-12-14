@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/09 14:51:39 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/14 13:00:50 by aachbaro         ###   ########.fr       */
+/*   Created: 2021/12/14 12:39:23 by aachbaro          #+#    #+#             */
+/*   Updated: 2021/12/14 13:00:52 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
-int	main(void)
-{
-	char *str;
+# include <stdio.h>
+# include <unistd.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include "LIBFT/libft.h"
 
-	while(strncmp((str = readline("mdmadam>")), "exit", 4))
-	{
-		if (strncmp(str, "getenv", 6) == 0)
-			printf("%s", getenv("PATH"));
-		add_history(str);
-		printf("%s\n", str);
-		free(str);
-	}
-	return (0);
-}
+#endif
