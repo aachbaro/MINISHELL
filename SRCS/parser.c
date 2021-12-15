@@ -6,7 +6,7 @@
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 16:43:26 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/14 18:49:40 by aachbaro         ###   ########.fr       */
+/*   Updated: 2021/12/15 14:29:13 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,8 @@ int	split_cmds(t_data *data, char *str)
 	del_tab(tab);
 	return (0);
 }	
+
+int	str_to_cmd(char *str)
+{
+	
+}
