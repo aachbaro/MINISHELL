@@ -6,7 +6,7 @@
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:04:37 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/16 19:30:07 by aachbaro         ###   ########.fr       */
+/*   Updated: 2021/12/16 20:05:22 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int	pars_quote(t_data *data, int start, int cmd)
 	char	*dup;
 
 	i = start + 1;
-	while (!ft_strchr("'", data->cmds[cmd].line[i])
-			|| data->cmds[cmd].line[i])
+	while (data->cmds[cmd].line[i] != '\''
+			&& data->cmds[cmd].line[i])
 		i++;
-	dup = ft_strndup(data->cmds[cmd].line + start, i - start);
+	dup = ft_strndup(data->cmds[cmd].line + start, i - start + 1);
 	if (!dup)
 		return (-1);
 	new = tkn_new(dup, TYPE_QUOTE);
@@ -51,7 +51,7 @@ int	pars_quote(t_data *data, int start, int cmd)
 	if (!new)
 		return (-1);
 	tkn_addback(&data->cmds[cmd].tkn, new);
-	return (i - start);
+	return (i - start + 1);
 }
 
 int	pars_dblquote(t_data *data, int start, int cmd)
@@ -61,10 +61,10 @@ int	pars_dblquote(t_data *data, int start, int cmd)
 	char	*dup;
 
 	i = start + 1;
-	while (!ft_strchr("\"", data->cmds[cmd].line[i])
-			|| data->cmds[cmd].line[i])
+	while (data->cmds[cmd].line[i] != '"'
+			&& data->cmds[cmd].line[i])
 		i++;
-	dup = ft_strndup(data->cmds[cmd].line + start, i - start);
+	dup = ft_strndup(data->cmds[cmd].line + start, i - start + 1);
 	if (!dup)
 		return (-1);
 	new = tkn_new(dup, TYPE_DBLQUOTE);
@@ -72,7 +72,7 @@ int	pars_dblquote(t_data *data, int start, int cmd)
 	if (!new)
 		return (-1);
 	tkn_addback(&data->cmds[cmd].tkn, new);
-	return (i - start);
+	return (i - start + 1);
 }
 
 int	pars_lessthan(t_data *data, int start, int cmd)
