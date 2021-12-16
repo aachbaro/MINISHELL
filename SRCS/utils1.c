@@ -6,7 +6,7 @@
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:25:54 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/14 18:49:50 by aachbaro         ###   ########.fr       */
+/*   Updated: 2021/12/16 18:39:07 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,36 @@ void	del_tab(char **tab)
 	while (tab[i])
 		free(tab[i++]);
 	free(tab);
+}
+
+void	del_cmd(t_data *data)
+{
+	int		i;
+
+	i = 0;
+	while (data->cmds[i].line)
+	{
+		free(data->cmds[i].line);
+		tkn_clear(&data->cmds[i].tkn);
+		i++;
+	}
+	free(data->cmds);
+}
+
+char	*ft_strndup(const char *s, int n)
+{
+	int		i;
+	char	*cpy;
+
+	cpy = malloc(sizeof(char) * (n + 1));
+	if (!cpy)
+		return (NULL);
+	i = 0;
+	while (s[i] && i < n)
+	{
+		cpy[i] = s[i];
+		i++;
+	}
+	cpy[i] = 0;
+	return (cpy);
 }

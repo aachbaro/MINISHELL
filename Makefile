@@ -3,6 +3,8 @@ SRC = SRCS/main.c \
 	  SRCS/parser.c \
 	  SRCS/utils1.c \
 	  SRCS/frag_manager.c \
+	  SRCS/func_tab.c \
+	  SRCS/func_tab2.c \
 
 LIBFT = -L./LIBFT -lft
 READLINE = -L/usr/local/lib -I/usr/local/include -lreadline

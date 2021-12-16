@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frag_manager.c                                     :+:      :+:    :+:   */
+/*   tkn_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:53:44 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/15 14:16:02 by aachbaro         ###   ########.fr       */
+/*   Updated: 2021/12/16 17:50:16 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_frag	*frag_new(char *content, int type)
+t_tkn	*tkn_new(char *content, int type)
 {
-	t_frag	*new;
+	t_tkn	*new;
 
-	new = malloc(sizeof(t_frag));
+	new = malloc(sizeof(t_tkn));
 	if (!new)
 		return (NULL);
 	new->content = ft_strdup(content);
@@ -26,9 +26,9 @@ t_frag	*frag_new(char *content, int type)
 	return (new);
 }
 
-t_frag	*frag_last(t_frag *cmd)
+t_tkn	*tkn_last(t_tkn *cmd)
 {
-	t_frag	*cpy;
+	t_tkn	*cpy;
 
 	cpy = cmd;
 	if (cpy)
@@ -37,23 +37,23 @@ t_frag	*frag_last(t_frag *cmd)
 	return (cpy);
 }
 
-void	frag_addback(t_frag **cmd, t_frag *new)
+void	tkn_addback(t_tkn **cmd, t_tkn *new)
 {
-	t_frag	*cpy;
+	t_tkn	*cpy;
 
 	if (*cmd == NULL)
 		*cmd = new;
 	else
 	{
-		cpy = frag_last(*cmd);
+		cpy = tkn_last(*cmd);
 		cpy->next = new;
 		cpy->next->prev = cpy;
 	}
 }
 
-void	frag_clear(t_frag **cmd)
+void	tkn_clear(t_tkn **cmd)
 {
-	t_frag	*cpy;
+	t_tkn	*cpy;
 
 	while (*cmd)
 	{
