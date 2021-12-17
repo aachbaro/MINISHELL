@@ -6,7 +6,7 @@
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 12:39:23 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/17 13:48:02 by aachbaro         ###   ########.fr       */
+/*   Updated: 2021/12/17 18:13:05 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include "LIBFT/libft.h"
 # define TYPE_NAME 0
 # define TYPE_QUOTE 1
@@ -50,6 +52,7 @@ typedef struct s_data
 	char	*line;
 	char 	*old_line;
 	t_cmd	*cmds;
+	int	over;
 	char 	**env;
 }			t_data;
 
@@ -64,9 +67,15 @@ int		pars_lessthan(t_data *data, int start, int cmd);
 int		pars_morethan(t_data *data, int start, int cmd);
 int		pars_var(t_data *data, int start, int cmd);
 int		tkn_to_exe(t_data *data, int cmd);
+int		line_to_exe(t_data *data);
+
+// ELSE
+int	prompt(t_data *data);
 
 // EXECUTION
 void	exe_path(t_data *data, int cmd);
+int	exe_builtin(t_data *data, int cmd);
+void	exe_cmds(t_data *data);
 
 // UTILS INUTILS
 void	aff_lst(t_list *lst);
@@ -74,6 +83,7 @@ void	delst(void	*content);
 void	del_tab(char **tab);
 void	del_cmd(t_data *data);
 char	*ft_strndup(const char *s, int n);
+void	free_all(t_data *data);
 
 // FRAG UTILS
 t_tkn	*tkn_new(char *content, int type);

@@ -6,11 +6,11 @@
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 12:54:05 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/17 13:53:21 by aachbaro         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:06:17 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 char 	*get_possible_path(char *cmd, char *str)
 {
@@ -52,7 +52,8 @@ char	*get_path(char *cmd)
 		free(path);
 		i++;
 	}
-	return (NULL);
+	del_tab(tab);
+	return (ft_strdup(cmd));
 }
 
 char	**get_args(t_cmd cmd)
@@ -75,7 +76,6 @@ char	**get_args(t_cmd cmd)
 	i = 0;
 	while (cpy && cpy->type < TYPE_REDIN)
 	{
-		printf("%s\n", cpy->content);
 		tab[i] = ft_strdup(cpy->content);
 		if (!tab[i])
 			return (NULL);

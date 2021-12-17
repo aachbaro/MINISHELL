@@ -1,18 +1,19 @@
 NAME = minishell
 SRC = SRCS/main.c \
-	  SRCS/parser.c \
-	  SRCS/utils1.c \
-	  SRCS/frag_manager.c \
-	  SRCS/func_tab.c \
-	  SRCS/func_tab2.c \
-	  SRCS/tkn_to_exe.c \
-	  SRCS/exec.c \
+	  SRCS/PARSING/line_to_tkn.c \
+	  SRCS/PARSING/pars_func.c \
+	  SRCS/PARSING/pars_func2.c \
+	  SRCS/PARSING/tkn_to_exe.c \
+	  SRCS/PARSING/parser.c \
+	  SRCS/UTILS/utils1.c \
+	  SRCS/UTILS/frag_manager.c \
+	  SRCS/EXE/exec.c \
 
 LIBFT = -L./LIBFT -lft
 READLINE = -L/usr/local/lib -I/usr/local/include -lreadline
 CC = gcc #clang
 INC = -I./minishell.h
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 RM = rm -rf
 OBJ = $(SRC:.c=.o)
 $(NAME): $(OBJ)

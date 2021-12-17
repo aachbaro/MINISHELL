@@ -6,11 +6,11 @@
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:25:54 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/16 18:39:07 by aachbaro         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:42:54 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	aff_lst(t_list *lst)
 {
@@ -42,6 +42,8 @@ void	del_cmd(t_data *data)
 	while (data->cmds[i].line)
 	{
 		free(data->cmds[i].line);
+		free(data->cmds[i].path);
+		del_tab(data->cmds[i].args);
 		tkn_clear(&data->cmds[i].tkn);
 		i++;
 	}
@@ -64,4 +66,12 @@ char	*ft_strndup(const char *s, int n)
 	}
 	cpy[i] = 0;
 	return (cpy);
+}
+
+void	free_all(t_data *data)
+{
+	if (data->old_line)
+		free(data->old_line);
+	if (data->cmds)
+		del_cmd(data);
 }

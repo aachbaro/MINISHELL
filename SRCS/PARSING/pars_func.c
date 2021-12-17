@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   func_tab.c                                         :+:      :+:    :+:   */
+/*   pars_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 16:04:37 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/16 20:05:22 by aachbaro         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:06:06 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	pars_alnum(t_data *data, int start, int cmd)
 {
@@ -43,7 +43,7 @@ int	pars_quote(t_data *data, int start, int cmd)
 	while (data->cmds[cmd].line[i] != '\''
 			&& data->cmds[cmd].line[i])
 		i++;
-	dup = ft_strndup(data->cmds[cmd].line + start, i - start + 1);
+	dup = ft_strndup(data->cmds[cmd].line + start + 1, i - start - 1);
 	if (!dup)
 		return (-1);
 	new = tkn_new(dup, TYPE_QUOTE);
@@ -64,7 +64,7 @@ int	pars_dblquote(t_data *data, int start, int cmd)
 	while (data->cmds[cmd].line[i] != '"'
 			&& data->cmds[cmd].line[i])
 		i++;
-	dup = ft_strndup(data->cmds[cmd].line + start, i - start + 1);
+	dup = ft_strndup(data->cmds[cmd].line + start + 1, i - start - 1);
 	if (!dup)
 		return (-1);
 	new = tkn_new(dup, TYPE_DBLQUOTE);
