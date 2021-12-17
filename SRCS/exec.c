@@ -6,20 +6,17 @@
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 12:56:38 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/14 15:10:13 by aachbaro         ###   ########.fr       */
+/*   Updated: 2021/12/17 13:51:21 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int parser(char *str)
+void	exe_path(t_data *data, int cmd)
 {
-	char 	**tab;
 	pid_t	pid;
 	int		status;
-	int		i;
 
-	tab = ft_split(str, ' ');
 	pid = fork();
 	if (pid == -1)
 		perror("fork");
@@ -30,12 +27,8 @@ int parser(char *str)
 	}
 	else
 	{
-		if (execve(tab[0], tab, 0) == -1)
+		if (execve(data->cmds[cmd].path, data->cmds[cmd].args,
+					data->env) == -1)
 			perror("shell");
 	}
-	i = 0;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
-	return (0);
 }

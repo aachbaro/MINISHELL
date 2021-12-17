@@ -6,7 +6,7 @@
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 12:39:23 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/16 18:32:04 by aachbaro         ###   ########.fr       */
+/*   Updated: 2021/12/17 13:48:02 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "LIBFT/libft.h"
-# define TYPE_QUOTE 0
-# define TYPE_DBLQUOTE 1
-# define TYPE_VAR 2
-# define TYPE_REDIN 3
-# define TYPE_REDOUT 4
-# define TYPE_HRDOC 5
-# define TYPE_APPEND 6
-# define TYPE_NAME 7
+# define TYPE_NAME 0
+# define TYPE_QUOTE 1
+# define TYPE_DBLQUOTE 2
+# define TYPE_VAR 3
+# define TYPE_REDIN 4
+# define TYPE_REDOUT 5
+# define TYPE_HRDOC 6
+# define TYPE_APPEND 7
 
 typedef struct s_tkn
 {
@@ -50,6 +50,7 @@ typedef struct s_data
 	char	*line;
 	char 	*old_line;
 	t_cmd	*cmds;
+	char 	**env;
 }			t_data;
 
 // PARSER DE COMMANDE
@@ -62,6 +63,10 @@ int		pars_dblquote(t_data *data, int start, int cmd);
 int		pars_lessthan(t_data *data, int start, int cmd);
 int		pars_morethan(t_data *data, int start, int cmd);
 int		pars_var(t_data *data, int start, int cmd);
+int		tkn_to_exe(t_data *data, int cmd);
+
+// EXECUTION
+void	exe_path(t_data *data, int cmd);
 
 // UTILS INUTILS
 void	aff_lst(t_list *lst);

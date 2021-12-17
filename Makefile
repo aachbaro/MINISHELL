@@ -5,6 +5,8 @@ SRC = SRCS/main.c \
 	  SRCS/frag_manager.c \
 	  SRCS/func_tab.c \
 	  SRCS/func_tab2.c \
+	  SRCS/tkn_to_exe.c \
+	  SRCS/exec.c \
 
 LIBFT = -L./LIBFT -lft
 READLINE = -L/usr/local/lib -I/usr/local/include -lreadline
