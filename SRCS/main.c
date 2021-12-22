@@ -6,7 +6,7 @@
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 14:51:39 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/17 18:09:43 by aachbaro         ###   ########.fr       */
+/*   Updated: 2021/12/22 16:49:56 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	main(int ac, char **av, char **env)
 		// PASSER DE LA LIGNE A PLUSIEURS COMMANDE DIVISEES
 		if (line_to_exe(&data) == -1)
 			perror("shell");
-		exe_cmds(&data);
+		pipe_loop(&data);
 		if (!ft_strncmp(data.line, "exit", 4))
 			data.over = 1;
 		free(data.line);

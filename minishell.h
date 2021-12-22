@@ -6,7 +6,7 @@
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 12:39:23 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/17 18:13:05 by aachbaro         ###   ########.fr       */
+/*   Updated: 2021/12/22 16:52:14 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <readline/history.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <fcntl.h>
 # include "LIBFT/libft.h"
 # define TYPE_NAME 0
 # define TYPE_QUOTE 1
@@ -76,6 +77,8 @@ int	prompt(t_data *data);
 void	exe_path(t_data *data, int cmd);
 int	exe_builtin(t_data *data, int cmd);
 void	exe_cmds(t_data *data);
+int	is_builtin(t_cmd cmd);
+void	pipe_loop(t_data *data);
 
 // UTILS INUTILS
 void	aff_lst(t_list *lst);

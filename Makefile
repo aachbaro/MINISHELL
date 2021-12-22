@@ -8,6 +8,7 @@ SRC = SRCS/main.c \
 	  SRCS/UTILS/utils1.c \
 	  SRCS/UTILS/frag_manager.c \
 	  SRCS/EXE/exec.c \
+	  SRCS/EXE/pipe_loop.c \
 
 LIBFT = -L./LIBFT -lft
 READLINE = -L/usr/local/lib -I/usr/local/include -lreadline

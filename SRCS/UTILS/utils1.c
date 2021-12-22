@@ -6,7 +6,7 @@
 /*   By: aachbaro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:25:54 by aachbaro          #+#    #+#             */
-/*   Updated: 2021/12/17 17:42:54 by aachbaro         ###   ########.fr       */
+/*   Updated: 2021/12/22 15:58:10 by aachbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ void	free_all(t_data *data)
 {
 	if (data->old_line)
 		free(data->old_line);
-	if (data->cmds)
+	if (data->cmds->line)
 		del_cmd(data);
 }
